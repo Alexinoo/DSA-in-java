@@ -28,6 +28,19 @@ public class LinkedList {
         }
     }
 
+    public void append(int value){
+        Node newNode = new Node(value);
+        if(length == 0){
+          head = newNode;
+          tail = newNode;
+          length = 1;
+        }else{
+            tail.next = newNode;
+            tail = newNode;
+            length++;
+        }
+    }
+
     public void getHead() {
         System.out.println("Head : "+head.value);
     }

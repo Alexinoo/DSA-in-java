@@ -13,6 +13,16 @@ public class Main {
 
         myLinkedList.append(2);
 
-        myLinkedList.printList();
+        // (2) - Items - Return 2 Node
+        System.out.println(myLinkedList.removeLast().value);
+
+        // (1) - Item - Return 1 Node
+        System.out.println(myLinkedList.removeLast().value);
+
+        // (0) - Items - Return null
+        System.out.println(myLinkedList.removeLast());
+
+
+       /* myLinkedList.printList(); */
     }
 }

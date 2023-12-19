@@ -127,15 +127,34 @@ public class LinkedList {
         if ( index == length - 1)  return removeLast();
 
         //Node temp = get(index); // O(n)
-        Node prev = get(index - 1);    //node before
+        Node prev = get(index - 1); //node before
         Node temp = prev.next; // O(1)
 
         prev.next = temp.next;
         temp.next = null;
         length--;
-
         return temp;
+    }
 
+    public void reverse(){
+        //Reverse head to point to tail and tail to point to head - use temp variable
+        Node temp = head;
+        head = tail;
+        tail = temp;
+
+        //Reverse the arrows to point to opposite direction
+        // use before and after variables
+        Node after = temp.next;
+        Node before = null;
+
+        //The hard part - use for loop
+        //4 lines of code in the right order
+        for (int i = 0; i < length; i++) {
+            after = temp.next;
+            temp.next = before;
+            before = temp;
+            temp = after;
+        }
     }
 
     public void getHead() {

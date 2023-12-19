@@ -143,7 +143,7 @@ public class LinkedList {
         tail = temp;
 
         //Reverse the arrows to point to opposite direction
-        // use before and after variables
+        // Initialize before and after variables
         Node after = temp.next;
         Node before = null;
 
@@ -155,6 +155,7 @@ public class LinkedList {
             before = temp;
             temp = after;
         }
+
     }
 
     public void getHead() {

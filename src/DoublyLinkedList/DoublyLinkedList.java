@@ -110,6 +110,38 @@ public class DoublyLinkedList {
         return false;
     }
 
+    public boolean insert(int index,int value){
+        if(index < 0 || index > length) return false;
+
+        if(index == 0) {
+            prepend(value);
+            return true;
+        }
+
+        if(index == length) {
+            append(value);
+            return true;
+        }
+
+         // Create New Node
+        Node newNode = new Node(value);
+
+        // Insert in the middle - need after and before variables
+        Node before = get(index - 1);
+        Node after = before.next;
+
+        //Insert new Node in the middle
+        newNode.prev = before;
+        newNode.next = after;
+        before.next = newNode;
+        after.prev = newNode;
+
+
+        //Increment size/length
+        length++;
+        return true;
+    }
+
 
     public void printList(){
         Node temp = head;

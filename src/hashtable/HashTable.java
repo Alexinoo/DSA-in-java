@@ -44,6 +44,16 @@ public class HashTable {
         }
     }
 
+    public int get(String key){
+        int index = hash(key);  //6
+        Node temp = dataMap[index]; // dataMap[6] If empty , temp is set to null and return 0
+        while(temp != null){        // Otherwise if there are items temp is set to head
+             if(temp.key == key) return temp.value; //compares temp.key with the key and return value if matches found
+             temp = temp.next;
+        }
+        return 0;  // Returns 0 if no match was found
+    }
+
     public void printTable(){
         for (int i = 0; i < dataMap.length; i++) {
             System.out.println(i + ":");

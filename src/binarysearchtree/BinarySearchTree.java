@@ -16,6 +16,33 @@ public class BinarySearchTree {
 
     /*
 
+     Steps to reproduce - insert(value)
+      ======================
+      Create a new node
+        Node newNode = new Node(value)
+      if empty or (root == null) set root to new node and return true
+            root = newNode
+            return true
+      Otherwise,initialize temp to root
+            temp = root
+      while loop
+
+      check if value to insert matches return false; --Edge case
+
+        if value < temp.value
+            if spot is null insert --Edge case
+                set temp.left = newNode
+                return true
+            Otherwise [ Go left]
+                temp = temp.left
+
+        else
+            if spot is null insert --Edge case
+                set temp.right = newNode
+                return true
+            Otherwise [ Go right]
+                temp = temp.right
+
      */
 
     public boolean insert(int value){
@@ -47,15 +74,18 @@ public class BinarySearchTree {
     }
 
     /*
-      Steps to reproduce
+      Steps to reproduce contains(value)
       ======================
 
       if empty or (root == null) return false [Optional]
       temp = root
       while temp != null
         if value < temp.value  [ Go left]
+            temp = temp.left
         else if value > temp.value  [ Go right]
-        else [return true]
+            temp = temp.right
+        else
+            match found [return true]
       return false
      */
 

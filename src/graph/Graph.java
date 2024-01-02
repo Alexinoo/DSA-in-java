@@ -36,6 +36,15 @@ public class Graph {
         return false;
     }
 
+    public boolean removeVertex(String vertex){
+       if(adjList.get(vertex) == null) return false;   // return false if Vertex not found
+        for (String otherVertex: adjList.get(vertex) ) { // loop through each connected edge and remove the vertex
+            adjList.get(otherVertex).remove(vertex);
+        }
+        adjList.remove(vertex); // remove the main vertex
+        return true;
+    }
+
     //Prints {A=[]}
 
     public void printGraph(){

@@ -23,9 +23,23 @@ public class Heap {
         return 2 * index + 2;
     }
 
+    private int parent(int index){ //Determine parent of the child
+        return (index - 1) / 2;
+    }
+
     private void swap(int index1, int index2){
         int temp = heap.get(index1);
         heap.set(index1,heap.get(index2));
         heap.set(index2,temp);
+    }
+
+    //insert
+    public void insert(int value){
+        heap.add(value);
+        int current = heap.size() - 1; //5
+        while(current > 0 && heap.get(current) > heap.get(parent(current))){
+            swap(current, parent(current)); //swap(5,2)
+            current = parent(current);      //update current
+        }
     }
 }

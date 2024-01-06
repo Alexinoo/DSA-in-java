@@ -147,4 +147,17 @@ public class BinarySearchTree {
         rInsert(root,value);
     }
 
+
+    /*
+     * Find minimum value
+     * */
+
+    public int minValue(Node currentNode){
+        while(currentNode.left != null){
+            currentNode = currentNode.left;
+        }
+        return currentNode.value;
+    }
+
+
 }

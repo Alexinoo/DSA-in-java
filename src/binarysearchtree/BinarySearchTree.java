@@ -105,10 +105,10 @@ public class BinarySearchTree {
     }
 
     /*
-    * Calling contains() recursively
+    * contains() recursively
     * */
 
-    public boolean rContains(Node currentNode, int value){
+    private boolean rContains(Node currentNode, int value){
         if(currentNode == null) return false;
 
         if(currentNode.value == value) return true;
@@ -124,5 +124,27 @@ public class BinarySearchTree {
        return rContains(root,value);
     }
 
+
+    /*
+     * Written insert() recursively
+     * */
+
+    private Node rInsert(Node currentNode, int value){
+        if(currentNode == null) return new Node(value);
+
+        if(value < currentNode.value){
+            currentNode.left = rInsert(currentNode.left,value);
+        }else if(value > currentNode.value){
+            currentNode.right = rInsert(currentNode.right,value);
+        }
+        return currentNode;
+    }
+
+    public void rInsert(int value){
+        if(root == null) {
+            root = new Node(value);
+        }
+        rInsert(root,value);
+    }
 
 }

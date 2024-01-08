@@ -159,5 +159,50 @@ public class BinarySearchTree {
         return currentNode.value;
     }
 
+    /*
+     * Delete Node
+     * - Check if tree is empty or root is null and return null
+     * - Traverse to the right if value > root
+     *     i) pass deleteNode(Node currentNode, int value)
+     * - Traverse to the left if value < root
+     * - Once you get to the node that you want to delete
+     *      - Edge cases
+     *         i) The node is a Leafy node
+     *         ii) The node to delete has a node to the right and none to the left
+     *         iii)The node to delete has a node to the left and none to the right
+     *         iv) The node has both to the left and right
+     *               - Find the minimum value of the subtree
+     *               - Copy the value to the
+     *               - Drop by calling deleteNode() on it
+     * - Return the node that you have deleted
+     * */
+    private Node deleteNode(Node currentNode, int value){
+        if(currentNode == null) return null;
+
+        if( value < currentNode.value){
+            currentNode.left = deleteNode(currentNode.left,value);
+        }else if(value > currentNode.value){
+            currentNode.right = deleteNode(currentNode.right,value);
+        }else{
+            if(currentNode.left == null && currentNode.right == null){
+                return null;
+            }else if(currentNode.left == null ){
+                currentNode = currentNode.right;
+            }else if(currentNode.right == null){
+                currentNode = currentNode.left;
+            }else{
+              int subTreeMin = minValue(currentNode.right);
+              currentNode.value = subTreeMin;
+              currentNode.right= deleteNode(currentNode.right , subTreeMin);
+            }
+        }
+        return currentNode;
+    }
+
+    public void deleteNode(int value){
+        deleteNode(root,value);
+    }
+
+
 
 }

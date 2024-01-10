@@ -210,11 +210,19 @@ public class BinarySearchTree {
 
     /* TRAVERSAL*/
 
-    /*Breadth First Search
+    /*
+    Breadth First Search
+    =====================
     *
-    * BFS()
-    *
-    * Definitions
+    * Adds Level after Level - starts with the root
+    * Adds child nodes start with Left
+                10          [10]
+               / \
+              9    11       [10 , 9 , 11]
+             / \   / \
+            7   8 12  13    [10 , 9 , 11 , 7 , 8 , 12, 13]
+
+    * Definition
     * ============
       - Returns an ArrayList of Integers from BST
       - Built-in Queue in Java uses a LinkedList
@@ -252,5 +260,60 @@ public class BinarySearchTree {
         return results;
 
     }
+
+    /*
+    *
+    Depth First Search
+    =====================
+    * Uses Recursion
+    *
+    * Create a method inside this method but since java does not allow you to do that there is a work around
+    * Have an internal class and add the method inside it
+
+    PreOrder
+    ========
+    * Starts with the root - Add it first
+    * Go left (recursively)- adding each node at every level from the left until you get to the bottom left
+    * Go Right after exhausting Left
+    *
+    *           47          [47]              []
+               / \
+              21  76       [47 , 21]
+             / \  / \
+           18  27 52 82    [47 , 21 , 18]
+
+                           [47 , 21 , 18, 27]
+
+    * Go Right after exhausting Left
+
+                           [47 , 21 , 18, 27 , 76]
+
+                           [47 , 21 , 18, 27 , 76 , 52]
+
+                           [47 , 21 , 18, 27 , 76 , 52 , 82]
+
+    *
+    *
+    * */
+
+    public ArrayList<Integer> DFSPreOrder() {
+        ArrayList<Integer> results = new ArrayList<>();
+
+        class Traverse {
+            Traverse(Node currentNode) {
+                results.add(currentNode.value);
+                if (currentNode.left != null) {
+                    new Traverse(currentNode.left);
+                }
+                if (currentNode.right != null) {
+                    new Traverse(currentNode.right);
+                }
+            }
+
+        }
+        new Traverse(root);
+
+        return results;
+        }
 
 }

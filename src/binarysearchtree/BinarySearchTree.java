@@ -1,5 +1,9 @@
 package binarysearchtree;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinarySearchTree {
      Node root;
 
@@ -204,5 +208,49 @@ public class BinarySearchTree {
     }
 
 
+    /* TRAVERSAL*/
+
+    /*Breadth First Search
+    *
+    * BFS()
+    *
+    * Definitions
+    * ============
+      - Returns an ArrayList of Integers from BST
+      - Built-in Queue in Java uses a LinkedList
+      - Create an ArrayList of Integers that we are going to return
+      -
+    * Start
+    ======
+      - Add root to the queue
+      - Use while loop that runs when there are items in the queue
+        - Remove the currentNode from the queue
+           - Add it to results ArrayList
+        - Check if there is a node at the left
+           - Add it to the queue
+        - Check if there is a node at the right and
+           - Add it to the queue
+      - Return results arrayList
+      *
+    * */
+    public ArrayList<Integer> BreadthFirstSearch(){
+        Node currentNode = root;
+        Queue<Node> queue = new LinkedList<>();
+        ArrayList<Integer> results = new ArrayList<>();
+        queue.add(root);
+
+        while(queue.size() > 0){
+            currentNode = queue.remove();
+            results.add(currentNode.value);
+            if(currentNode.left != null){
+                queue.add(currentNode.left);
+            }
+            if(currentNode.right != null){
+                queue.add(currentNode.right);
+            }
+        }
+        return results;
+
+    }
 
 }

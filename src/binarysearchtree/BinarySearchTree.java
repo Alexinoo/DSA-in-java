@@ -292,8 +292,64 @@ public class BinarySearchTree {
 
                            [47 , 21 , 18, 27 , 76 , 52 , 82]
 
+
+    PostOrder
+    ========
+    * Traverse to the leafy node at bottom left
     *
+    * Add the bottom left leafy node
+    * Traverse the root and go right
+    * Add the bottom right leafy node it
+    * Add the root of this siblings and
+    * Repeat..
     *
+    *           47          [18]
+               / \
+              21  76       [18 , 27]
+             / \  / \
+           18  27 52 82    [18 , 27 , 21 ]
+
+
+    * Go Right after exhausting Left - Start with the bottom left
+
+                           [18 , 27 , 21 , 52]
+
+                           [18 , 27 , 21 , 52 , 82]
+
+                           [18 , 27 , 21 , 52 , 82 , 76]
+
+                           [18 , 27 , 21 , 52 , 82 , 76 , 47]
+
+
+
+    InOrder - Ordered
+    ========
+    * Traverse to the leafy node at bottom left
+    *
+    * Add the bottom left leafy node
+    * Traverse the root and go right
+    * Add the bottom right leafy node it
+    * Add the root of this siblings and
+    * Repeat..
+    *
+    *           47         [18]
+               / \
+              21  76       [18 , 21]
+             / \  / \
+           18  27 52 82    [18 , 21 , 27 ]
+
+
+    * Go Right after exhausting Left - Start with the bottom left
+
+                           [18 , 21 , 27 , 47 ]
+
+                           [18 , 21 , 27 , 47 , 52 ]
+
+                           [18 , 21 , 27 , 47 , 52 , 76]
+
+                           [18 , 21 , 27 , 47 , 52 , 76 , 82]
+
+    * Prints the List in an ordered manner
     * */
 
     public ArrayList<Integer> DFSPreOrder() {
@@ -315,5 +371,49 @@ public class BinarySearchTree {
 
         return results;
         }
+
+
+        public ArrayList<Integer> DFSPostOrder() {
+        ArrayList<Integer> results = new ArrayList<>();
+
+        class Traverse {
+            Traverse(Node currentNode) {
+                if (currentNode.left != null) {
+                    new Traverse(currentNode.left);
+                }
+                if (currentNode.right != null) {
+                    new Traverse(currentNode.right);
+                }
+                results.add(currentNode.value);
+            }
+
+        }
+        new Traverse(root);
+
+        return results;
+        }
+
+
+    public ArrayList<Integer> DFSInOrder() {
+        ArrayList<Integer> results = new ArrayList<>();
+
+        class Traverse {
+            Traverse(Node currentNode) {
+                if (currentNode.left != null) {
+                    new Traverse(currentNode.left);
+                }
+                results.add(currentNode.value);
+
+                if (currentNode.right != null) {
+                    new Traverse(currentNode.right);
+                }
+
+            }
+
+        }
+        new Traverse(root);
+
+        return results;
+    }
 
 }

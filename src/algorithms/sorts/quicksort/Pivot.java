@@ -13,9 +13,9 @@ public class Pivot {
         System.out.println(Arrays.toString(myArray));
     }
 
-    private static int pivot(int[] array, int pivotIndex, int endIndex) {
+    public static int pivot(int[] array, int pivotIndex, int endIndex) {
         int swapIndex = pivotIndex;
-        for(int i = pivotIndex + 1; i < endIndex ; i++){
+        for(int i = pivotIndex + 1; i <= endIndex ; i++){
             if( array[i] < array[pivotIndex]){
                 swapIndex++;
                 swap(array, swapIndex, i);
